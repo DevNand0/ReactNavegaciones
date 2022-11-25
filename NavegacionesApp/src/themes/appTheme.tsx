@@ -43,3 +43,9 @@ export const styles = StyleSheet.create({
         fontSize:19
     }
 })
+
+
+export const colores = {
+    primary:'#5856D6'
+    
+};
