@@ -7,6 +7,8 @@ import { Tab3Screen } from '../screens/Tab3Screen';
 import { StackNavigator } from './StackNavigator';
 import { colores } from '../themes/appTheme';
 import { Platform, Text } from 'react-native';
+import { TopTabNavigator } from './TopTabNavigator';
+import Icon from 'react-native-vector-icons/Ionicons'
 
 export const Tabs = () =>{
     return Platform.OS ==='ios'?<TabsIos/>:<TabsAndroid/>;
@@ -24,24 +26,28 @@ export const TabsAndroid = () => {
       }}
       screenOptions={({route})=>({
         tabBarIcon:({color, focused})=>{
-          let iconName:string="";
+          let iconName:string="shield-checkmark-outline";
           switch(route.name){
             case 'Tab1Screen':
-              iconName="T1";
+              iconName="shield-checkmark-outline";
             break; 
             case 'Tab2Screen':
-              iconName="";
+              iconName="man-outline";
+            break; 
+            case 'TopTabs':
+              iconName="server-outline";
             break; 
             default:
-              iconName="S";
+              iconName="newspaper-outline";
             break;
           }
-          return <Text style={{color}}>{iconName}</Text>
+          return <Icon name={iconName} size={20} color={color} />
         }
        })}
     >
       <BottomTabAndroid.Screen name="Tab1Screen" options={{ title:'Mi Tab 1' }} component={Tab1Screen} />
       <BottomTabAndroid.Screen name="Tab2Screen" options={{ title:'Mi Tab 2' }} component={Tab2Screen} />
+      <BottomTabAndroid.Screen name="TopTabs" options={{ title:'Top Tabs' }} component={TopTabNavigator} />
       <BottomTabAndroid.Screen name="Navegacion Stack" options={{ title:'Stack' }} component={StackNavigator} />
     </BottomTabAndroid.Navigator>
   );
@@ -66,7 +72,7 @@ export const TabsIos = () => {
         tabBarStyle:{
           borderTopColor:colores.primary,
           borderTopWidth:0,
-          elevation:0//la propiedad elevation es considerada en android
+          elevation:0,//la propiedad elevation es considerada en android
         },
         tabBarLabelStyle:{
           fontSize:15//el tamano de letra del tab
@@ -79,7 +85,10 @@ export const TabsIos = () => {
               iconName="T1";
             break; 
             case 'Tab2Screen':
-              iconName="";
+              iconName="Bottom";
+            break; 
+            case 'TopTabs':
+              iconName="Top";
             break; 
             default:
               iconName="S";
@@ -91,6 +100,7 @@ export const TabsIos = () => {
     >
       <BottomTabIos.Screen name="Tab1Screen" options={{ title:'Mi Tab 1'}} component={Tab1Screen} />
       <BottomTabIos.Screen name="Tab2Screen" options={{ title:'Mi Tab 2'}} component={Tab2Screen} />
+      <BottomTabIos.Screen name="TopTabs" options={{ title:'Top Tabs' }} component={TopTabNavigator} />
       <BottomTabIos.Screen name="NavegacionStack" options={{ title:'Stack'}} component={StackNavigator} />
     </BottomTabIos.Navigator>
   );

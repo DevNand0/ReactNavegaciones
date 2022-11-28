@@ -3,10 +3,12 @@ import { Image, Text, useWindowDimensions, View } from 'react-native';
 import { createDrawerNavigator, DrawerContentComponentProps, DrawerContentScrollView} from '@react-navigation/drawer';
 import { StackNavigator } from './StackNavigator';
 import { SettingsScreen } from '../screens/SettingsScreen';
-import { styles } from '../themes/appTheme';
+import { styles, colores } from '../themes/appTheme';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Tabs } from './Tabs';
+import Icon from 'react-native-vector-icons/Ionicons'
+import { Colors } from 'react-native-paper';
 
 const Drawer = createDrawerNavigator();
 
@@ -48,14 +50,20 @@ const MenuInterno = (props: DrawerContentComponentProps)=>{
           style={styles.menuItemRow}
           onPress={()=>props.navigation.navigate('Tabs')}
           >
-          <Text style={styles.menuItemText}>Navegacion Tabs</Text> 
+          <Text style={styles.menuItemText}>
+          <Icon name='ribbon-outline' size={20} color={colores.primary} />
+            Navegacion Tabs
+          </Text> 
         </TouchableOpacity>
 
         <TouchableOpacity 
           style={styles.menuItemRow}
           onPress={()=>props.navigation.navigate('SettingsScreen')}
           >
-          <Text style={styles.menuItemText}>Ajustes</Text> 
+          <Text style={styles.menuItemText}>
+            <Icon name='options-outline' size={20} color={colores.primary} />
+            Ajustes
+          </Text> 
         </TouchableOpacity>
       </View>
     </DrawerContentScrollView>
