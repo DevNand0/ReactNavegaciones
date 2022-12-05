@@ -6,6 +6,7 @@ type AuthAction =
      | { type: 'signIn' }
      | { type: 'changeFavIcon', payload: string }
      | { type: 'logOut'}
+     | { type: 'changeName', payload: string }
 
 //resuelve soluciones y genera nuevos estados
 //Funcion de generaEstado
@@ -26,6 +27,12 @@ export const authReducer = (state:AuthState, action:AuthAction):AuthState=>{
             return {
                 ...state,
                 favoriteIcon:action.payload//tiene el nombre del icono que se va a pasar por parametro
+            }
+
+        case 'changeName':
+            return {
+                ...state,
+                username:action.payload//tiene el nombre del usuario que se va a pasar por parametro
             }
 
         case 'logOut':

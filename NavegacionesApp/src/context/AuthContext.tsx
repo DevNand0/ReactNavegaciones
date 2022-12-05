@@ -21,6 +21,7 @@ export interface AuthContextProps{
     signIn: () => void;
     logOut: () => void;
     changeFavoriteIcon:(iconName:string)=>void;
+    changeUsername:(username:string)=>void;
 }
 
 
@@ -49,16 +50,23 @@ export const AuthProvider = ({children}: any)=>{
     const changeIcon = (iconName:string)=>{
         dispatch({type:'changeFavIcon',payload:iconName});
     }
+
+    const changeUsername = (name:string)=>{
+        dispatch({type:'changeName', payload:name})
+    }
     return (
         <AuthContext.Provider
             value={{ 
                 authState:authStateR,
                 signIn:signIn,//la propiedad de la interfaz AuthContextProps 
                 //de la funcion signIn llama a la funcion signIn que se creo para ejecutar el dispatch 
+                logOut:logOut,//de la propiedad de la interfaz AuthCOntextProps
+                //la funcion logOut ejecuta con el metodo de vinculacion del dispatch logOut para terminar la sesion
                 changeFavoriteIcon:changeIcon,//de la propiedad de la interfaz AuthContextProps
                 //la funcion changeFavoriteIcon ejecuta el metodo por la vinculacion del dispatch changeIcon para cambiar de icono 
-                logOut:logOut//de la propiedad de la interfaz AuthCOntextProps
-                //la funcion logOut ejecuta con el metodo de vinculacion del dispatch logOut para terminar la sesion
+                changeUsername:changeUsername,//de la propiedad de la interfaz AuthContextProps
+                //la funcion changeFavoriteIcon ejecuta el metodo por la vinculacion del dispatch changeIcon para cambiar de icono 
+                
              }}
         >
             {children}
